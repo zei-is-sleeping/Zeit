@@ -25,6 +25,7 @@ echo "==> Installing personal packages..."
 
 packages=(
   sgdboop-bin
+  flow-network-monitor-bin
 )
 
 if [ ${#packages[@]} -gt 0 ]; then
