@@ -59,6 +59,11 @@ modules:
         - xdg-utils
         - qt6ct-kde
         - qt6-wayland
+        - qt6-base 
+        - qt6-declarative 
+        - qt6-multimedia 
+        - qt6-svg 
+        - qt6-imageformats
         - switcheroo-control
         - adw-gtk-theme
         - papirus-icon-theme
@@ -136,6 +141,8 @@ modules:
         - python-rich
         - python-tomli-w
         - libxcrypt-compat
+        - ninja 
+        - cmake 
 
         # === System Utils ===
         - btop
