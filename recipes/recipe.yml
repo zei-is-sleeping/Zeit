@@ -47,6 +47,7 @@ modules:
       packages:
         # === Desktop & WM ===
         - hyprland
+        - layer-shell-qt
         - greetd
         - accountsservice
         - cliphist
