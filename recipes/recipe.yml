@@ -115,6 +115,8 @@ modules:
         - kitty
 
         # === CLI Tools (AI + Personal) ===
+        - ollama 
+        - ollama-cuda
         - ast-grep
         - dust
         - procs
