@@ -49,7 +49,6 @@ modules:
       packages:
         # === Desktop & WM ===
         - hyprland
-        - layer-shell-qt
         - greetd
         - accountsservice
         - cliphist
@@ -60,14 +59,6 @@ modules:
         - xdg-desktop-portal-hyprland
         - xdg-user-dirs
         - xdg-utils
-        - qt6ct-kde
-        - qt6-wayland
-        - qt6-base 
-        - qt6-declarative 
-        - qt6-multimedia 
-        - qt6-svg 
-        - qt6-imageformats
-        - switcheroo-control
         - adw-gtk-theme
         - papirus-icon-theme
         - cachyos-extra-v3/noctalia
@@ -81,11 +72,8 @@ modules:
         - pipewire-pulse
         - pipewire-alsa
         - wireplumber
-        - alsa-utils
         - sof-firmware
         - pavucontrol
-        - easyeffects
-        - lsp-plugins
         - mpd
         - mpd-mpris
         - rmpc
@@ -100,8 +88,6 @@ modules:
         # === Fonts ===
         - apple-fonts
         - inter-font
-        - ttf-roboto
-        - ttf-twemoji
         - noto-fonts
         - noto-fonts-cjk
         - noto-fonts-emoji
@@ -123,8 +109,6 @@ modules:
         - dust
         - procs
         - jc
-        - go-yq
-        - htmlq
         - ripgrep-all
         - yt-dlp
         - tealdeer
@@ -135,13 +119,10 @@ modules:
         - bc
         - rsync
         - wget
-        - openbsd-netcat
 
         # === Dev Tools ===
         - github-cli
         - uv
-        - python-rich
-        - python-tomli-w
         - libxcrypt-compat
         - ninja 
         - cmake 
@@ -152,7 +133,6 @@ modules:
         - lshw
         - bind
         - smartmontools
-        - compsize
         - btrfsmaintenance
         - fuse-overlayfs
         - fuse2
@@ -173,7 +153,6 @@ modules:
         - bluez
         - bluez-utils
         - blueman
-        - wireguard-tools
         - tailscale
 
         # === GPU Drivers ===
@@ -191,8 +170,6 @@ modules:
         # === Kernel & Power ===
         - cachyos-settings
         - nohang
-        - fwupd
-        - cachyos/bpftune-git
         - thermald
 
         # === Gaming ===
@@ -252,11 +229,8 @@ modules:
         - systemd-resolved
         - keyd
         - thermald 
-        - switcheroo-control
         - scx_loader
         - nohang-desktop
-        - bpftune
-        - zeit-battery-threshold.service
       disabled:
         - systemd-networkd
     user:
