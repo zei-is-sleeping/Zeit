@@ -118,7 +118,7 @@ modules:
 
         # === CLI Tools (AI + Personal) ===
         - ollama 
-        - ollama-cuda
+        - ollama-vulkan
         - ast-grep
         - dust
         - procs
@@ -136,9 +136,6 @@ modules:
         - rsync
         - wget
         - openbsd-netcat
-        - 7zip
-        - unrar
-        - zip
 
         # === Dev Tools ===
         - github-cli
@@ -178,9 +175,6 @@ modules:
         - blueman
         - wireguard-tools
         - tailscale
-        - dnsmasq
-        - bridge-utils
-        - vde2
 
         # === GPU Drivers ===
         - nvidia-prime
@@ -204,7 +198,6 @@ modules:
         # === Gaming ===
         - steam
         - millennium
-        - moonlight-qt
         - mgba-qt
         - emulationstation-de
         - flatpak
