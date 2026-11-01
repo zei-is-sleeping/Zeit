@@ -37,6 +37,8 @@ modules:
       - nowatchdog
       - nvidia_drm.modeset=1
       - nvidia_drm.fbdev=1
+      - split_lock_detect=off
+      - i915.enable_guc=3
 
   - type: script
     scripts:
@@ -200,14 +202,6 @@ modules:
         - cachyos/bpftune-git
         - thermald
 
-        # === Virtualization ===
-        - qemu-desktop
-        - libvirt
-        - virt-manager
-        - virt-viewer
-        - edk2-ovmf
-        - swtpm
-
         # === Gaming ===
         - steam
         - millennium
@@ -271,10 +265,6 @@ modules:
         - nohang-desktop
         - bpftune
         - zeit-battery-threshold.service
-        - virtqemud.socket 
-        - virtnetworkd.socket 
-        - virtnodedevd.socket 
-        - virtstoraged.socket
       disabled:
         - systemd-networkd
     user:

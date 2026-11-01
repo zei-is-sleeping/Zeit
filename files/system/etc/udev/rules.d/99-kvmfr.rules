@@ -1,1 +1,0 @@
-SUBSYSTEM=="kvmfr", OWNER="zei", GROUP="kvm", MODE="0660"
