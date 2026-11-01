@@ -146,6 +146,7 @@ modules:
         - libnotify
         - upower
         - power-profiles-daemon
+        - resvg
 
         # === Networking ===
         - networkmanager
@@ -190,6 +191,43 @@ modules:
         - opencode
         - koodo-reader-bin
 
+        # === Sekai Pop === 
+        - quickshell
+        - qt6-multimedia-ffmpeg
+        - qt6-imageformats
+        - qt6-shadertools
+        - ttf-material-symbols-variable
+        - ttf-jetbrains-mono-nerd
+        - grim
+        - slurp
+        - swappy 
+        - wf-recorder
+        - hyprpicker
+        - wtype
+        - imagemagick
+        - tesseract
+        - tesseract-data-eng
+        - matugen
+        - brightnessctl
+        - ddcutil
+        - qt6ct
+        - zenity
+        - python-numpy
+        - libcanberra
+        - sound-theme-freedesktop
+        - nm-connection-editor
+        - playerctl 
+        - hypridle
+        - pacman-contrib
+        - xorg-xrdb
+        - gvfs
+        - thunar 
+        - thunar-volman
+        - tumbler 
+        - songrec
+        - mpvpaper 
+        - cloudflare-warp-bin
+
   - type: script
     secrets:
       - type: env
@@ -231,6 +269,8 @@ modules:
         - thermald 
         - scx_loader
         - nohang-desktop
+        - upower
+        - warp-svc
       disabled:
         - systemd-networkd
     user:
