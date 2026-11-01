@@ -100,6 +100,9 @@ EOF
         printf '%s\n' "$line" >> "$tmp_conf"
     done < /etc/pacman.conf
 
+    # Restore world-readable permissions before replacing pacman.conf
+    # mktemp creates files with 0600 mode by default, which blocks unprivileged users like 'builder'
+    chmod 0644 "$tmp_conf"
     mv "$tmp_conf" /etc/pacman.conf
 
     # Enable multilib
@@ -117,6 +120,9 @@ EOF
 Include = /etc/pacman.d/chaotic-mirrorlist
 EOF
     fi
+
+    # Explicitly guarantee pacman.conf remains 0644 for any unprivileged processes
+    chmod 0644 /etc/pacman.conf
 }
 time_step "preset: configure repository priority" configure_repositories
 
