@@ -26,8 +26,9 @@ clear_build_journals() {
 }
 time_step "cleanup: clear build journals" clear_build_journals
 
+# Clean pacman package archives.
 cleanup_pacman_cache() {
-rm -rf /var/cache/pacman/pkg/* /var/tmp/* /tmp/*
+    rm -rf /var/cache/pacman/pkg/*
 }
 time_step "cleanup: clear package caches" cleanup_pacman_cache
 
