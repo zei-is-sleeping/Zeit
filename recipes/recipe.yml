@@ -178,7 +178,6 @@ modules:
         - blueman
         - wireguard-tools
         - tailscale
-        - samba
         - dnsmasq
         - bridge-utils
         - vde2
