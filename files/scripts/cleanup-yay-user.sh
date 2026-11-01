@@ -26,4 +26,9 @@ clear_build_journals() {
 }
 time_step "cleanup: clear build journals" clear_build_journals
 
+cleanup_pacman_cache() {
+rm -rf /var/cache/pacman/pkg/* /var/tmp/* /tmp/*
+}
+time_step "cleanup: clear package caches" cleanup_pacman_cache
+
 echo "==> Cleanup complete. Your atomic image is mathematically pristine."

@@ -9,47 +9,45 @@ echo "==> Deploying global compiler gaslight wrappers for v3 architecture..."
 install_compiler_wrappers() {
     mkdir -p /usr/local/bin
 
-# 1. C/C++ Compilers (GCC & Clang)
-cat << 'EOF' | tee /usr/local/bin/gcc /usr/local/bin/g++ /usr/local/bin/cc /usr/local/bin/c++ /usr/local/bin/clang /usr/local/bin/clang++ > /dev/null
+    # 1. C/C++ Compilers (GCC & Clang)
+    # Intercepts rogue CMake/Meson scripts that hardcode -march=native
+    cat << 'EOF' | tee /usr/local/bin/gcc /usr/local/bin/g++ /usr/local/bin/cc /usr/local/bin/c++ /usr/local/bin/clang /usr/local/bin/clang++ > /dev/null
 #!/bin/bash
 NEW_ARGS=()
 for arg in "$@"; do
-    if [[ "$arg" == "-march=native" ]]; then
-        NEW_ARGS+=("-march=x86-64-v3")
-    elif [[ "$arg" == "-mtune=native" ]]; then
-        NEW_ARGS+=("-mtune=generic")
-    else
-        NEW_ARGS+=("$arg")
-    fi
+    case "$arg" in
+        -march=native) NEW_ARGS+=("-march=x86-64-v3") ;;
+        -mtune=native) NEW_ARGS+=("-mtune=generic") ;;
+        *) NEW_ARGS+=("$arg") ;;
+    esac
 done
 COMPILER_NAME=$(basename "$0")
 exec "/usr/bin/$COMPILER_NAME" "${NEW_ARGS[@]}"
 EOF
 
-# 2. Rust Compiler (rustc & cargo)
-# Rust uses target-cpu=native instead of march
-cat << 'EOF' | tee /usr/local/bin/rustc > /dev/null
+    # 2. Rust Compiler (rustc)
+    # Catches both separate and glued target-cpu tokens
+    cat << 'EOF' | tee /usr/local/bin/rustc > /dev/null
 #!/bin/bash
 NEW_ARGS=()
 for arg in "$@"; do
-    if [[ "$arg" == "target-cpu=native" ]]; then
-        NEW_ARGS+=("target-cpu=x86-64-v3")
-    else
-        NEW_ARGS+=("$arg")
-    fi
+    case "$arg" in
+        target-cpu=native) NEW_ARGS+=("target-cpu=x86-64-v3") ;;
+        -Ctarget-cpu=native) NEW_ARGS+=("-Ctarget-cpu=x86-64-v3") ;;
+        *) NEW_ARGS+=("$arg") ;;
+    esac
 done
 exec "/usr/bin/rustc" "${NEW_ARGS[@]}"
 EOF
 
-# 3. Make them all executable
-chmod +x /usr/local/bin/gcc /usr/local/bin/g++ /usr/local/bin/cc /usr/local/bin/c++
-chmod +x /usr/local/bin/clang /usr/local/bin/clang++ /usr/local/bin/rustc
+    # 3. Make wrappers executable
+    chmod +x /usr/local/bin/gcc /usr/local/bin/g++ /usr/local/bin/cc /usr/local/bin/c++ \
+             /usr/local/bin/clang /usr/local/bin/clang++ /usr/local/bin/rustc
 
-# 4. Go Compiler (Go uses env vars for architecture leveling)
-# We export this to the system profile so build scripts pick it up
+    # 4. Go Compiler architecture level
     echo "export GOAMD64=v3" > /etc/profile.d/go-v3-gaslight.sh
 }
 
 time_step "builder: install temporary x86-64-v3 compiler wrappers" install_compiler_wrappers
 
-echo "==> Hardware gaslighting active. All compilations will now safely target x86-64-v3."
+echo "==> Hardware gaslighting active. Compilations will safely target x86-64-v3."
