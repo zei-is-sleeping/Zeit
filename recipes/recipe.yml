@@ -75,6 +75,7 @@ modules:
 
         # === Browsers ===
         - zen-browser-bin
+        - helium-browser-bin
 
         # === Audio Stack ===
         - pipewire
