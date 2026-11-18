@@ -27,7 +27,7 @@ time_step "packages: relocate /opt into immutable image" relocate_opt
 
 echo "==> Removing obsolete build-time dependencies from base image..."
 obsolete=()
-for package in nodejs npm go obs-studio rpm-tools; do
+for package in go; do
     pacman -Qq "$package" &>/dev/null && obsolete+=("$package")
 done
 
