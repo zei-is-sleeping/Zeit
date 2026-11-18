@@ -136,6 +136,7 @@ modules:
         - libxcrypt-compat
         - ninja 
         - cmake 
+        - npm
 
         # === System Utils ===
         - btop
