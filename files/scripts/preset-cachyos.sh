@@ -40,7 +40,7 @@ echo "==> Bootstrapping CachyOS repositories dynamically..."
 bootstrap_cachyos() {
     printf '\n[cachyos]\nServer = https://cdn.cachyos.org/repo/$arch/$repo\n' >> /etc/pacman.conf
 
-    pacman -Sy --noconfirm cachyos-keyring cachyos-mirrorlist cachyos-v3-mirrorlist cachyos/pacman
+    pacman -Syu --noconfirm cachyos-keyring cachyos-mirrorlist cachyos-v3-mirrorlist cachyos/pacman
 
     # Clean up the temporary bootstrap block so configure_repositories can set final priority
     sed -i '/^\[cachyos\]/,/^Server = /d' /etc/pacman.conf
