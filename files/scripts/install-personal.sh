@@ -7,6 +7,7 @@ timing_start_script install-personal
 echo "==> Installing personal AUR packages..."
 packages=(
     sgdboop-bin
+    luciole-git
 )
 
 if [ ${#packages[@]} -gt 0 ]; then
