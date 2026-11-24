@@ -123,6 +123,8 @@ modules:
         - ripgrep-all
         - yt-dlp
         - tealdeer
+        - man-db
+        - man-pages
         - trash-cli
         - ouch
         - trippy

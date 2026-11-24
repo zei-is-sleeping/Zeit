@@ -13,6 +13,8 @@ configure_pacman_baseline() {
     if ! grep -q '^DisableSandbox$' /etc/pacman.conf; then
         sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf
     fi
+    # Allow man pages to extract while keeping texinfo stripped
+    sed -i 's@usr/share/man/\*[[:space:]]*@@g; /^NoExtract[[:space:]]*=[[:space:]]*$/d' /etc/pacman.conf
 }
 time_step "preset: configure pacman baseline" configure_pacman_baseline
 
@@ -129,6 +131,12 @@ time_step "preset: configure repository priority" configure_repositories
 # Step 8: Single full system upgrade to CachyOS v3.
 echo "==> Upgrading system packages to CachyOS v3..."
 time_step "preset: upgrade system to CachyOS v3" pacman -Syu --noconfirm
+
+# Step 8b: Reinstall pre-baked arch-bootc core packages so stripped man pages extract.
+echo "==> Restoring man pages for pre-installed base packages..."
+time_step "preset: restore base package man pages" pacman -S --noconfirm \
+    coreutils util-linux bash grep sed gawk findutils tar gzip \
+    procps-ng iproute2 iputils shadow systemd openssh curl
 
 # Step 9: Install base system tools.
 echo "==> Installing base toolset..."
